@@ -25,7 +25,8 @@
 
         <input type="button" value="수정" onclick="location.href='{% url 'boards:edit' post.id %}'">
         <input type="button" value="삭제" onclick="location.href='{% url 'boards:delete' post.id %}'">
-        <input type="button" value="좋아요">
+        <input type="button" id="btn-like" value="좋아요">
+        <input type="button" value="목록으로" onclick="location.href='{% url 'boards:index'%}'">
         <br><br>
     </div>
     <div>
@@ -48,11 +49,12 @@
 
         </table>
         <br>
-        <input type="button" id="btn-comment" value="댓글 추가" onclick="location.href='{% url 'boards:detail' post.id %}'">
+        <input type="button" id="btn-comment" value="댓글 추가">
     </div>
 </body>
 <script>
-    let btn_comment = document.querySelector('#btn-comment')
+    let btn_comment = document.querySelector('#btn-comment');
+    let btn_like = document.querySelector('#btn-like');
 
     btn_comment.addEventListener('click', e => {
         let author = document.querySelector('#comment-author').value;
@@ -71,10 +73,27 @@
             },
             data: JSON.stringify(param),
             success: function(data) {
-
+                document.location.reload()
             },
             error: function() {
                 alert('댓글 등록 실패');
+            }
+        })
+    })
+
+    btn_like.addEventListener('click', e => {
+        $.ajax({
+            url: "{% url 'boards:detail' post.id %}",
+            type: 'POST',
+            headers: {
+                'X-CSRFTOKEN': '{{ csrf_token }}'
+            },
+            data: JSON.stringify({'like':1}),
+            success: function(data) {
+                document.location.reload()
+            },
+            error: function() {
+                alert('좋아요 안됨 ㅠㅠ');
             }
         })
     })
