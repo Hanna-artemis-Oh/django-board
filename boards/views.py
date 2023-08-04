@@ -1,8 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+
+from .models import Post
 
 
 def index(request):
-    pass
+    post_list = Post.objects.all().order_by('-created_at')
+    context = {'post_list': post_list}
+    return render(request, 'boards/index.html', context)
 
 
 def write(request):
@@ -10,7 +14,9 @@ def write(request):
 
 
 def detail(request, post_id):
-    pass
+    post = get_object_or_404(Post, pk=post_id)
+    context = {'post': post}
+    return render(request, 'boards/detail.html', context)
 
 
 def edit(request, post_id):

@@ -3,8 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>게시판</title>
+    <style>
+        th,
+        td {
+            border: 1px solid #aaa;
+            background-clip: padding-box;
+            scroll-snap-align: start;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-
+    <input type="button" value="글쓰기">
+    <br>
+    {% if post_list %}
+        <table style="border: darkgray 1px solid; border-collapse: separate; border-spacing: 0; width: 90%; margin: 20px 0;">
+        <th scope="col">번호</th>
+        <th scope="col">글 제목</th>
+        <th scope="col">작성자</th>
+        <th scope="col">작성일</th>
+        <th scope="col">좋아요</th>
+        <th scope="col">댓글수</th>
+        {% for post in post_list %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.author }}</td>
+                <td>{{ post.created_at }}</td>
+                <td>{{ post.like }}</td>
+                <td>{{ post.num_comments }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <h1>아직 글이 없습니다.</h1>
+    {% endif %}
 </body>
 </html>
