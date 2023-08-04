@@ -10,7 +10,7 @@ def index(request):
 
 
 def write(request):
-    pass
+    return render(request, 'boards/write.html')
 
 
 def detail(request, post_id):
