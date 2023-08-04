@@ -3,10 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>게시판</title>
+    <style>
+        th,
+        td {
+            background-clip: padding-box;
+            scroll-snap-align: start;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
     <div>
-        <h4>글 번호: {{  }}</h4>
+        <h4>글 번호: {{ post.id }}</h4>
+        <h4>작성자: {{ post.author }}</h4>
+        <h4>제목: {{ post.title }}</h4>
+        <h4>내용:</h4>
+        <p>{{ post.content }}</p>
+        <h4>좋아요: {{ post.like }}</h4>
+        <br><br>
+
+        <input type="button" value="수정">
+        <input type="button" value="삭제">
+        <input type="button" value="좋아요">
+        <br><br>
+    </div>
+    <div>
+        <h3>댓글</h3>
+        <form>
+            <table style="border-collapse: collapse; border-spacing: 0; width: 90%;">
+                <th style="width: 20%">작성자</th>
+                <th style="width: 80%">내용</th>
+                {% if post.comment_set %}
+                {% for comment in post.comment_set.all %}
+                    <tr>
+                        <td>{{ comment.author }}</td>
+                        <td>{{ comment.content }}</td>
+                    </tr>
+                {% endfor %}
+                {% endif %}
+                    <tr>
+                        <td><input type="text"></td>
+                        <td><input type="text" style="width: 400px"></td>
+                    </tr>
+
+            </table>
+            <br>
+            <input type="button" value="댓글 추가">
+        </form>
     </div>
 </body>
 </html>

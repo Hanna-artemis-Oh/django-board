@@ -15,7 +15,9 @@ def write(request):
 
 def detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    context = {'post': post}
+    comments = post.comment_set.all()
+    context = {'post': post,
+               'comments': comments}
     return render(request, 'boards/detail.html', context)
 
 
