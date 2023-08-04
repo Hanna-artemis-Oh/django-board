@@ -22,7 +22,7 @@
         <h4>좋아요: {{ post.like }}</h4>
         <br><br>
 
-        <input type="button" value="수정">
+        <input type="button" value="수정" onclick="location.href='{% url 'boards:edit' %}'">
         <input type="button" value="삭제">
         <input type="button" value="좋아요">
         <br><br>
@@ -48,7 +48,7 @@
 
             </table>
             <br>
-            <input type="button" value="댓글 추가">
+            <input type="submit" value="댓글 추가">
         </form>
     </div>
 </body>

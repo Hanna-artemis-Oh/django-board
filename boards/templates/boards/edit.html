@@ -5,6 +5,17 @@
     <title>게시판</title>
 </head>
 <body>
-
+    <div>
+        <form>
+            <h1>글 수정하기</h1>
+            <h4>작성자: <input type="text" value="{{ post.author }}"></h4>
+            <h4>제목: <input type="text" value="{{ post.title }}"></h4>
+            <h4>내용: </h4>
+            <textarea rows="20" cols="60">{{ post.content }}</textarea>
+            <br><br>
+            <input type="submit" value="저장">
+            <input type="button" value="취소">
+        </form>
+    </div>
 </body>
 </html>

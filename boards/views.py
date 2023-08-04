@@ -22,7 +22,9 @@ def detail(request, post_id):
 
 
 def edit(request, post_id):
-    pass
+    post = get_object_or_404(Post, pk=post_id)
+    context = {'post': post}
+    return render(request, 'boards/edit.html', context)
 
 
 def delete(request, post_id):
