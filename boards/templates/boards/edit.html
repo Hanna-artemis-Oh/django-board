@@ -6,7 +6,7 @@
 </head>
 <body>
     <div>
-        <form method="post" action="{% url "boards:detail" post.id %}">
+        <form method="post" action="{% url "boards:index" %}">
             {% csrf_token %}
             <h1>글 수정하기</h1>
             <h4>작성자: <input type="text" value="{{ post.author }}"></h4>
