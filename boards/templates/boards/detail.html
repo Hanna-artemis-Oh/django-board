@@ -22,7 +22,7 @@
         <h4>좋아요: {{ post.like }}</h4>
         <br><br>
 
-        <input type="button" value="수정" onclick="location.href='{% url 'boards:edit' %}'">
+        <input type="button" value="수정" onclick="location.href='{% url 'boards:edit' post.id %}'">
         <input type="button" value="삭제">
         <input type="button" value="좋아요">
         <br><br>
@@ -30,6 +30,7 @@
     <div>
         <h3>댓글</h3>
         <form>
+            {% csrf_token %}
             <table style="border-collapse: collapse; border-spacing: 0; width: 90%;">
                 <th style="width: 20%">작성자</th>
                 <th style="width: 80%">내용</th>
