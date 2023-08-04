@@ -4,6 +4,11 @@ from .models import Post
 
 
 def index(request):
+    author = request.POST['author']
+    title = request.POST['title']
+    content = request.POST['content']
+    saved_post = Post(author=author, title=title, content=content)
+    saved_post.save()
     post_list = Post.objects.all().order_by('-created_at')
     context = {'post_list': post_list}
     return render(request, 'boards/index.html', context)
@@ -28,4 +33,5 @@ def edit(request, post_id):
 
 
 def delete(request, post_id):
-    pass
+    post = get_object_or_404(Post, pk=post_id)
+    post.delete()
